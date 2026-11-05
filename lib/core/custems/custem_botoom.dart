@@ -1,13 +1,19 @@
 import 'package:flutter/material.dart';
 
 class CustemBotoom extends StatelessWidget {
-  final String text; // متغير عشان تكتب اللي انت عايزه
-  final VoidCallback onTap; // عشان تحدد لما تدوس عليه يعمل ايه
+  final String text; 
+  final VoidCallback onTap; 
+  
+  // 1. متغيرات اختيارية للون الخلفية ولون النص
+  final Color? backgroundColor; 
+  final Color? textColor;
 
   const CustemBotoom({
     super.key,
-    required this.text, // مطلوب تكتب النص
-    required this.onTap, // مطلوب تحدد الوظيفة
+    required this.text, 
+    required this.onTap, 
+    this.backgroundColor, // اختياري (لو مكتبتهوش هيبقى أبيض)
+    this.textColor,       // اختياري (لو مكتبتهوش هيبقى أسود)
   });
 
   @override
@@ -19,14 +25,17 @@ class CustemBotoom extends StatelessWidget {
         width: 350,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(16),
-          color: Colors.white,
+          // 2. لو المستخدم باعت لون هياخده، لو مبعتش هياخد الأبيض كافتراضي
+          color: backgroundColor ?? Colors.white, 
         ),
         child: Center(
           child: Text(
-            text, // هنا بنستخدم المتغير
-            style: const TextStyle(
-              fontSize: 28,
-              fontWeight: FontWeight.w900,
+            text, 
+            style: TextStyle(
+              fontSize: 26,
+              fontWeight: FontWeight.w800,
+              // 3. نفس الفكرة للون النص
+              color: textColor ?? Colors.black, 
             ),
           ),
         ),
