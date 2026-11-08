@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pooking_app/feature/parkingDetails/ui/parking_details_screen.dart'; // ضيف المسار الصح
 
 class ParkingListSheet extends StatefulWidget {
   final List<Map<String, dynamic>> parkings;
@@ -96,7 +97,7 @@ class _ParkingListSheetState extends State<ParkingListSheet> {
 
   Widget _buildFilterChip(String title, bool isSelected) {
     return GestureDetector(
-      onTap: () => widget.onFilterChanged(title), // استدعاء دالة التغيير
+      onTap: () => widget.onFilterChanged(title),
       child: Container(
         margin: const EdgeInsets.only(left: 10),
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
@@ -125,52 +126,63 @@ class _ParkingListSheetState extends State<ParkingListSheet> {
     required Color statusColor,
     required Color iconColor,
   }) {
-    return Container(
-      margin: const EdgeInsets.only(bottom: 15),
-      padding: const EdgeInsets.all(15),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(20),
-        border: Border.all(color: Colors.grey.shade200),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.02),
-            blurRadius: 10,
-            offset: const Offset(0, 5),
+    return GestureDetector(
+      onTap: () {
+        // الانتقال لشاشة تفاصيل الموقف
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => ParkingDetailsScreen(),
           ),
-        ],
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        textDirection: TextDirection.rtl,
-        children: [
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.end,
-            children: [
-              Text(title, style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
-              const SizedBox(height: 5),
-              Text(distance, style: TextStyle(fontSize: 12, color: Colors.grey.shade600)),
-              const SizedBox(height: 10),
-              Text(price, style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
-              const SizedBox(height: 5),
-              Text(status, style: TextStyle(fontSize: 12, color: statusColor, fontWeight: FontWeight.w600)),
-            ],
-          ),
-          Container(
-            width: 60,
-            height: 60,
-            decoration: BoxDecoration(
-              color: iconColor,
-              borderRadius: BorderRadius.circular(16),
+        );
+      },
+      child: Container(
+        margin: const EdgeInsets.only(bottom: 15),
+        padding: const EdgeInsets.all(15),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(20),
+          border: Border.all(color: Colors.grey.shade200),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withOpacity(0.02),
+              blurRadius: 10,
+              offset: const Offset(0, 5),
             ),
-            child: const Center(
-              child: Text(
-                "P",
-                style: TextStyle(color: Colors.white, fontSize: 28, fontWeight: FontWeight.bold),
+          ],
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          textDirection: TextDirection.rtl,
+          children: [
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
+                Text(title, style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+                const SizedBox(height: 5),
+                Text(distance, style: TextStyle(fontSize: 12, color: Colors.grey.shade600)),
+                const SizedBox(height: 10),
+                Text(price, style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+                const SizedBox(height: 5),
+                Text(status, style: TextStyle(fontSize: 12, color: statusColor, fontWeight: FontWeight.w600)),
+              ],
+            ),
+            Container(
+              width: 60,
+              height: 60,
+              decoration: BoxDecoration(
+                color: iconColor,
+                borderRadius: BorderRadius.circular(16),
+              ),
+              child: const Center(
+                child: Text(
+                  "P",
+                  style: TextStyle(color: Colors.white, fontSize: 28, fontWeight: FontWeight.bold),
+                ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
