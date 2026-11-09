@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:pooking_app/feature/Booking_confirmation/ui/booking_confirmation.dart';
 import 'package:pooking_app/feature/auth/login/ui/login_screen.dart';
 import 'package:pooking_app/feature/auth/regiter/ui/register_screen.dart';
 import 'package:pooking_app/feature/home/ui/home_screen.dart';
 import 'package:pooking_app/feature/onbording/ui/onBording_screen_1.dart';
 import 'package:pooking_app/feature/onbording/ui/onBording_screen_2.dart';
 import 'package:pooking_app/feature/onbording/ui/onBording_screen_3.dart';
-import 'package:pooking_app/feature/parkingDetails/ui/Booking%20confirmation/ui/booking_confirmation.dart';
 import 'package:pooking_app/feature/parkingDetails/ui/parking_details_screen.dart';
 
 class ParkingApp extends StatelessWidget {

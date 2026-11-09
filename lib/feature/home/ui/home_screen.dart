@@ -12,9 +12,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   final TextEditingController _searchController = TextEditingController();
-  
-  // قائمة المواقف (بيانات تجريبية)
-  final List<Map<String, dynamic>> _allParkings = [
+    final List<Map<String, dynamic>> _allParkings = [
     {
       'title': "جراج سيتي ستار",
       'distance': "2 كم - مغطى - 24 ساعة",
@@ -60,14 +58,11 @@ class _HomeScreenState extends State<HomeScreen> {
     super.dispose();
   }
 
-  // دالة الفلترة (بتشتغل مع البحث والتابات)
   void _applyFilters() {
     setState(() {
       _filteredParkings = _allParkings.where((parking) {
-        // 1. فلترة البحث بالاسم
         final matchesSearch = parking['title'].toLowerCase().contains(_searchQuery.toLowerCase());
         
-        // 2. فلترة التابات (لو الكل، نعرض كله. لو مغطي، ندور على تاج مغطي)
         final matchesFilter = _selectedFilter == "الكل" || parking['tags'].contains(_selectedFilter);
 
         return matchesSearch && matchesFilter;

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pooking_app/core/classes/app_color.dart';
-import 'package:pooking_app/feature/parkingDetails/ui/Booking%20confirmation/ui/booking_confirmation.dart';
+import 'package:pooking_app/feature/Booking_confirmation/ui/booking_confirmation.dart';
 
 class RowContiner extends StatelessWidget {
   const RowContiner({super.key});
