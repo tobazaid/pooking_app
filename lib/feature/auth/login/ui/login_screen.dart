@@ -8,6 +8,7 @@ import 'package:pooking_app/feature/auth/login/ui/widget/row_apple_google.dart';
 import 'package:pooking_app/feature/auth/login/ui/widget/row_text.dart';
 import 'package:pooking_app/feature/auth/regiter/ui/widget/custom_password_field.dart'; // استخدمنا الحقل الجاهز
 import 'package:pooking_app/feature/auth/regiter/ui/widget/custom_text_field.dart';
+import 'package:pooking_app/feature/forgetPassword/ui/forget_password.dart';
 import 'package:pooking_app/feature/home/ui/home_screen.dart'; // استخدمنا الحقل الجاهز
 
 class LoginScreen extends StatefulWidget {
@@ -43,7 +44,10 @@ class _LoginScreenState extends State<LoginScreen> {
       );
 
       if (mounted) {
-        Navigator.pushReplacementNamed(context, HomeScreen.routeName); // يدخل على الهوم
+        Navigator.pushReplacementNamed(
+          context,
+          HomeScreen.routeName,
+        ); // يدخل على الهوم
       }
     } on FirebaseAuthException catch (e) {
       String errorMessage = 'حدث خطأ';
@@ -55,9 +59,9 @@ class _LoginScreenState extends State<LoginScreen> {
         errorMessage = 'الإيميل غير صالح';
       }
       if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text(errorMessage)),
-        );
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(SnackBar(content: Text(errorMessage)));
       }
     } finally {
       if (mounted) setState(() => _isLoading = false);
@@ -80,7 +84,10 @@ class _LoginScreenState extends State<LoginScreen> {
                   const SizedBox(height: 25),
                   Text("أهلاً بيك  👋", style: AppTextStyle.extrabold),
                   const SizedBox(height: 8),
-                  Text("سجّل دخولك عشان تحجز مكانك في ثواني", style: AppTextStyle.regular),
+                  Text(
+                    "سجّل دخولك عشان تحجز مكانك في ثواني",
+                    style: AppTextStyle.regular,
+                  ),
                 ],
               ),
             ),
@@ -104,7 +111,8 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
                 child: SingleChildScrollView(
                   padding: const EdgeInsets.fromLTRB(22, 28, 22, 25),
-                  child: Form( // 1. تغليف الحقول بالـ Form
+                  child: Form(
+                    // 1. تغليف الحقول بالـ Form
                     key: _formKey,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.end,
@@ -123,7 +131,8 @@ class _LoginScreenState extends State<LoginScreen> {
                           hint: "example@email.com",
                           controller: _emailController,
                           validator: (value) {
-                            if (value == null || value.isEmpty) return "ادخل الإيميل";
+                            if (value == null || value.isEmpty)
+                              return "ادخل الإيميل";
                             if (!value.contains('@')) return "الإيميل غير صالح";
                             return null;
                           },
@@ -145,7 +154,8 @@ class _LoginScreenState extends State<LoginScreen> {
                           hint: "ادخل كلمة المرور",
                           controller: _passwordController,
                           validator: (value) {
-                            if (value == null || value.isEmpty) return "ادخل كلمة المرور";
+                            if (value == null || value.isEmpty)
+                              return "ادخل كلمة المرور";
                             return null;
                           },
                         ),
@@ -154,12 +164,20 @@ class _LoginScreenState extends State<LoginScreen> {
 
                         GestureDetector(
                           onTap: () {},
-                          child: const Text(
-                            "هل نسيت كلمة المرور؟",
-                            style: TextStyle(
-                              fontSize: 13,
-                              fontWeight: FontWeight.w600,
-                              color: Colors.blue,
+                          child: InkWell(
+                            onTap: () {
+                              Navigator.pushNamed(
+                                context,
+                                ForgetPassword.routeName,
+                              );
+                            },
+                            child: const Text(
+                              "هل نسيت كلمة المرور؟",
+                              style: TextStyle(
+                                fontSize: 13,
+                                fontWeight: FontWeight.w600,
+                                color: Colors.blue,
+                              ),
                             ),
                           ),
                         ),
@@ -178,9 +196,13 @@ class _LoginScreenState extends State<LoginScreen> {
 
                         Row(
                           children: [
-                            Expanded(child: Divider(color: Colors.grey.shade300)),
+                            Expanded(
+                              child: Divider(color: Colors.grey.shade300),
+                            ),
                             Padding(
-                              padding: const EdgeInsets.symmetric(horizontal: 12),
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 12,
+                              ),
                               child: Text(
                                 "أو تابع باستخدام",
                                 style: TextStyle(
@@ -189,7 +211,9 @@ class _LoginScreenState extends State<LoginScreen> {
                                 ),
                               ),
                             ),
-                            Expanded(child: Divider(color: Colors.grey.shade300)),
+                            Expanded(
+                              child: Divider(color: Colors.grey.shade300),
+                            ),
                           ],
                         ),
 

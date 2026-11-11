@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:pooking_app/feature/Booking_confirmation/ui/booking_confirmation.dart';
 import 'package:pooking_app/feature/auth/login/ui/login_screen.dart';
 import 'package:pooking_app/feature/auth/regiter/ui/register_screen.dart';
+import 'package:pooking_app/feature/forgetPassword/ui/forget_password.dart';
 import 'package:pooking_app/feature/home/ui/home_screen.dart';
 import 'package:pooking_app/feature/onbording/ui/onBording_screen_1.dart';
 import 'package:pooking_app/feature/onbording/ui/onBording_screen_2.dart';
@@ -24,7 +25,8 @@ class ParkingApp extends StatelessWidget {
         RegisterScreen.routeName:(context) => RegisterScreen(),
         HomeScreen.routeName:(context) => HomeScreen(),
         ParkingDetailsScreen.routeName:(context) => ParkingDetailsScreen(),
-        BookingConfirmation.routeName:(context) => BookingConfirmation()
+        BookingConfirmation.routeName:(context) => BookingConfirmation(),
+        ForgetPassword.routeName:(context) => ForgetPassword()
       },
     );
   }

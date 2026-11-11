@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:pooking_app/feature/home/ui/widget/home_header.dart';
 import 'package:pooking_app/feature/home/ui/widget/parking_list_sheet.dart';
-import 'package:pooking_app/feature/profile/ui/my_profile.dart'; // <--- ضيف ده
+import 'package:pooking_app/feature/profile/ui/my_profile.dart'; // صفحة الحساب
+import 'package:pooking_app/feature/wallet/ui/wallet_screen.dart'; // صفحة المحفظة
+import 'package:pooking_app/feature/myPbooking/ui/my_bookings_screen.dart'; // صفحة الحجوزات
 
 class HomeScreen extends StatefulWidget {
   static const String routeName = "/home";
@@ -13,7 +15,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   final TextEditingController _searchController = TextEditingController();
-  int _currentIndex = 0;
+  int _currentIndex = 0; // 0 = استكشاف (الرئيسية)
 
   final List<Map<String, dynamic>> _allParkings = [
     {
@@ -73,8 +75,9 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    // قائمة الصفحات اللي هتتبدل حسب التاب
     final List<Widget> screens = [
-      // 1. الصفحة الرئيسية
+      // 1. الصفحة الرئيسية (الخريطة + القائمة)
       Stack(
         children: [
           HomeHeader(
@@ -103,19 +106,20 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       
       // 2. صفحة الحجوزات
-      const Center(child: Text("هنا سجل حجوزاتي")),
+      const MyBookingsScreen(), 
       
       // 3. صفحة المحفظة
-      const Center(child: Text("هنا محفظتي")),
+      const WalletScreen(),
       
-      // 4. صفحة الحساب (MyProfile)
-      const MyProfile(), // <--- غيرناها هنا
+      // 4. صفحة الحساب
+      const MyProfile(),
     ];
 
     return Directionality(
-      textDirection: TextDirection.rtl,
+      textDirection: TextDirection.rtl, // اتجاه من اليمين
       child: Scaffold(
         backgroundColor: Colors.white,
+        // IndexedStack بيحتفظ بحالة كل صفحة
         body: IndexedStack(
           index: _currentIndex,
           children: screens,
