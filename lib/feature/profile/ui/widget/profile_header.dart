@@ -1,24 +1,24 @@
-
 import 'package:flutter/material.dart';
 import 'package:pooking_app/core/classes/app_text_style.dart';
 
 class ProfileHeader extends StatelessWidget {
-  const ProfileHeader({super.key});
+  final String name;
+  final String phone;
+
+  const ProfileHeader({
+    super.key,
+    required this.name,
+    required this.phone,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Column(
       mainAxisSize: MainAxisSize.min,
-      children: const [
-        Text(
-          "عبدالتواب",
-          style: AppTextStyle.profileName,
-        ),
-        SizedBox(height: 3),
-        Text(
-          "01094746713",
-          style: AppTextStyle.profilePhone,
-        ),
+      children: [
+        Text(name, style: AppTextStyle.profileName),
+        const SizedBox(height: 3),
+        Text(phone, style: AppTextStyle.profilePhone),
       ],
     );
   }
